@@ -11,14 +11,13 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import java.awt.Label;
 
 public class Menuscreen extends ApplicationAdapter {
 	private static final float BUTTON_WIDTH = 300f;
@@ -60,7 +59,8 @@ public class Menuscreen extends ApplicationAdapter {
 		LabelStyle headingstyle = new LabelStyle(font, Color.WHITE);
 		headingstyle.font = font;
 
-		//laTitle = new Label("Ants", headingstyle);
+		laTitle = new Label("Ants", new LabelStyle(new BitmapFont(), Color.WHITE));
+
 
 		tbStart = new TextButton("Start", textButtonStyle);
 		tbStart.pad(20f);
@@ -84,6 +84,8 @@ public class Menuscreen extends ApplicationAdapter {
 		});
 		table = new Table();
 		table.setFillParent(true);
+		table.add(laTitle);
+		table.row();
 		table.add(tbStart);
 		table.row();
 		table.add(tbExit);
