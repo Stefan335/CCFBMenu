@@ -27,7 +27,7 @@ public class Menuscreen extends ApplicationAdapter {
 	TextureRegion region;
 	Stage stage;
 	TextureAtlas taButton;
-	BitmapFont font;
+	BitmapFont fWhite, fBlack;
 	TextButton tbStart, tbExit;
 	TextButton.TextButtonStyle tbsNewGame, textButtonStyle;
 	Table table;
@@ -37,29 +37,33 @@ public class Menuscreen extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+		//bulk of code came from https://www.youtube.com/watch?v=q2qoiTqGsh8
 		stage= new Stage();
-
 		Gdx.input.setInputProcessor(stage);
 
-		taButton = new TextureAtlas("MenuButton.pack");
-		skNewGame = new Skin(taButton);
+		//used Bitmap Font Generator to make different fonts
+		fWhite = new BitmapFont(Gdx.files.internal("Fonts/white.fnt"));
+		fBlack = new BitmapFont(Gdx.files.internal("Fonts/black.fnt"));
 
-		font = new BitmapFont();
-		//font.setFontScale(nSWidth * 3 / 1794, nSHeight * 3 / 1080);
 		tBack = new Texture(Gdx.files.internal("Picnic.jpg"));
 		region = new TextureRegion(tBack, 20, 20, 50, 50);
+
+		//menu button and pack comes from TheDeepDarkTaurock code
+		taButton = new TextureAtlas("MenuButton.pack");
+		skNewGame = new Skin(taButton);
 		tButton = new Texture(Gdx.files.internal("expences-button-png-hi.png"));
 		textButtonStyle = new TextButton.TextButtonStyle();
 		textButtonStyle.up = skNewGame.newDrawable("MenuButtonUp");
 		textButtonStyle.down = skNewGame.newDrawable("MenuButtonDown");
 		textButtonStyle.checked = skNewGame.newDrawable("MenuButtonUp");
 		textButtonStyle.over = skNewGame.newDrawable("MenuButtonUp");
-		textButtonStyle.font = font;
+		textButtonStyle.font = fWhite;
 
-		LabelStyle headingstyle = new LabelStyle(font, Color.WHITE);
-		headingstyle.font = font;
+		LabelStyle headingstyle = new LabelStyle(fWhite, Color.WHITE);
+		headingstyle.font = fWhite;
 
-		laTitle = new Label("Ants", new LabelStyle(new BitmapFont(), Color.WHITE));
+		laTitle = new Label("Ants", headingstyle);
+		laTitle.setSize(600f, 50f);
 
 
 		tbStart = new TextButton("Start", textButtonStyle);
@@ -83,6 +87,7 @@ public class Menuscreen extends ApplicationAdapter {
 			}
 		});
 		table = new Table();
+		table.setBounds(0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		table.setFillParent(true);
 		table.add(laTitle);
 		table.row();
