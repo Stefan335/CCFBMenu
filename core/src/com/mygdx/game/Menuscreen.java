@@ -47,7 +47,7 @@ public class Menuscreen extends ApplicationAdapter {
 		//http://www.norakomi.com/tutorial_mambow2_music.php
 		music = Gdx.audio.newMusic(Gdx.files.internal("Music/Halo- Menu Music.mp3"));
 		music.setLooping(true);
-		music.setVolume(music.getVolume() * 1 / 5);
+		music.setVolume(music.getVolume() * 1 / 6);
 		music.play();
 
 		//used Bitmap Font Generator to make different fonts
